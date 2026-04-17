@@ -1,0 +1,17 @@
+## Using limits and requests
+
+resources:
+  limits:
+    cpu: 200m
+    memory: 250Mi
+  requests:
+    cpu: 50m
+    memory: 150Mi
+
+podAnnotations:
+  co.elastic.logs/enabled: "true"
+
+## Drain and Cordon Nodes when notice is received.
+enableSpotInterruptionDraining: true  ## Drain nodes when the spot interruption termination notice is received
+enableRebalanceMonitoring: true       ## Cordon nodes when the rebalance recommendation notice is received. If you'd like to drain the node in addition to cordoning, then also set `enableRebalanceDraining`.
+enableScheduledEventDraining: false   ## Drain nodes before the maintenance window starts for an EC2 instance scheduled event

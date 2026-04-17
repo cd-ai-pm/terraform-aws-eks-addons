@@ -1,0 +1,17 @@
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: "eks.amazonaws.com/nodegroup"
+          operator: In
+          values:
+          - "critical-nodes"
+
+resources:
+  requests:
+    cpu: 256m
+    memory: 32Mi
+  limits:
+    cpu: 512m
+    memory: 64Mi
