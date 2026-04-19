@@ -74,6 +74,67 @@ This table contains both Prerequisites and Providers:
 
 
 
+## Usage
+
+```hcl
+module "terraform-aws-eks-addons" {
+  source = "git::https://github.com/cd-ai-pm/terraform-aws-eks-addons.git?ref=main"
+
+  # required inputs
+  actions_runner_controller_helm_config                      = "<actions_runner_controller_helm_config>"  # Path to override-values.yaml for actions_runner_controller Chart
+  aws_ebs_csi_driver_helm_config                             = "<aws_ebs_csi_driver_helm_config>"  # Path to override-values.yaml for EBS CSI Driver Helm Chart
+  aws_ebs_csi_driver_iampolicy_json_content                  = "<aws_ebs_csi_driver_iampolicy_json_content>"  # Custom IAM Policy for EBS CSI Driver IRSA
+  aws_efs_csi_driver_helm_config                             = "<aws_efs_csi_driver_helm_config>"  # Path to override-values.yaml for AWS EFS CSI Driver Helm Chart
+  aws_efs_csi_driver_iampolicy_json_content                  = "<aws_efs_csi_driver_iampolicy_json_content>"  # Custom IAM Policy for EFS CSI Driver IRSA
+  aws_load_balancer_controller_helm_config                   = "<aws_load_balancer_controller_helm_config>"  # Path to override-values.yaml for AWS Load Balancer Controller Helm Chart
+  aws_load_balancer_controller_iampolicy_json_content        = "<aws_load_balancer_controller_iampolicy_json_content>"  # Custom IAM Policy for Load Balancer Controller IRSA
+  aws_node_termination_handler_helm_config                   = "<aws_node_termination_handler_helm_config>"  # Path to override-values.yaml for AWS Node Termination Handler Helm Chart
+  aws_xray_helm_config                                       = "<aws_xray_helm_config>"  # Path to override-values.yaml for AWS X-Ray Helm Chart
+  aws_xray_iampolicy_json_content                            = "<aws_xray_iampolicy_json_content>"  # Custom IAM Policy for AWS X-Ray IRSA
+  calico_tigera_helm_config                                  = "<calico_tigera_helm_config>"  # Path to override-values.yaml for Calico Helm Chart
+  certification_manager_helm_config                          = "<certification_manager_helm_config>"  # Path to override-values.yaml for Certification Manager Chart
+  cluster_autoscaler_helm_config                             = "<cluster_autoscaler_helm_config>"  # Path to override-values.yaml for Cluster Autoscaler Helm Chart
+  cluster_autoscaler_iampolicy_json_content                  = "<cluster_autoscaler_iampolicy_json_content>"  # Custom IAM Policy for ClusterAutoscaler IRSA
+  external_dns_helm_config                                   = "<external_dns_helm_config>"  # Path to override-values.yaml for External DNS Helm Chart
+  external_dns_iampolicy_json_content                        = "<external_dns_iampolicy_json_content>"  # Custom IAM Policy for External DNS
+  external_secrets_helm_config                               = "<external_secrets_helm_config>"  # Path to override-values.yaml for External-Secrets Helm Chart
+  external_secrets_iampolicy_json_content                    = "<external_secrets_iampolicy_json_content>"  # Custom IAM Policy for External-Secrets IRSA
+  filebeat_helm_config                                       = "<filebeat_helm_config>"  # Filebeat Helm Chart config
+  fluent_bit_helm_config                                     = "<fluent_bit_helm_config>"  # Path to override-values.yaml for FluentBit Helm Chart
+  fluent_bit_iampolicy_json_content                          = "<fluent_bit_iampolicy_json_content>"  # Custom IAM Policy for FluentBit IRSA
+  grafana_helm_config                                        = "<grafana_helm_config>"  # Grafana Helm Chart config
+  ingress_nginx_extra_configs                                = "<ingress_nginx_extra_configs>"  # Override attributes of helm_release terraform resource
+  ingress_nginx_helm_config                                  = "<ingress_nginx_helm_config>"  # Path to override-values.yaml for Ingress Nginx Helm Chart
+  istio_ingress_helm_config                                  = "<istio_ingress_helm_config>"  # Path to override-values.yaml for Istio Ingress  Helm Chart
+  jaeger_helm_config                                         = "<jaeger_helm_config>"  # Path to override-values.yaml for Jaeger Chart
+  k8s_pod_restart_info_collector_helm_config                 = "<k8s_pod_restart_info_collector_helm_config>"  # Path to override-values.yaml for the k8s-pod-restart-info-collector Helm Chart
+  karpenter_helm_config                                      = "<karpenter_helm_config>"  # Path to override-values.yaml for Karpenter Helm Chart
+  karpenter_iampolicy_json_content                           = "<karpenter_iampolicy_json_content>"  # Custom IAM Policy for Karpenter IRSA
+  keda_helm_config                                           = "<keda_helm_config>"  # Path to override-values.yaml for Keda Helm Chart
+  kiali_server_helm_config                                   = "<kiali_server_helm_config>"  # Path to override-values.yaml for Kiali Server Helm Chart
+  kube_state_metrics_helm_config                             = "<kube_state_metrics_helm_config>"  # Kube-State-Metrics Helm Chart config
+  kubeclarity_helm_config                                    = "<kubeclarity_helm_config>"  # Path to override-values.yaml for Kubeclarity Helm Chart
+  loki_helm_config                                           = "<loki_helm_config>"  # Path to override-values.yaml for Loki Chart
+  metrics_server_helm_config                                 = "<metrics_server_helm_config>"  # Path to override-values.yaml for Metrics Server Helm Chart
+  new_relic_helm_config                                      = "<new_relic_helm_config>"  # New-Relic Helm Chart config
+  prometheus_cloudwatch_exporter_helm_config                 = "<prometheus_cloudwatch_exporter_helm_config>"  # Path to override-values.yaml for Promtheus Cloudwatch Exporter Chart
+  prometheus_cloudwatch_exporter_role_iampolicy_json_content = "<prometheus_cloudwatch_exporter_role_iampolicy_json_content>"  # Custom IAM Policy for Prometheus Cloudwatch Exporter's Role
+  prometheus_cloudwatch_exporter_secret_manifest             = "<prometheus_cloudwatch_exporter_secret_manifest>"  # Path of prometheus cloudwatch exporter manifest
+  prometheus_helm_config                                     = "<prometheus_helm_config>"  # Prometheus Helm Chart config
+  redis_helm_config                                          = "<redis_helm_config>"  # Path to override-values.yaml for Redis Helm Chart
+  reloader_helm_config                                       = "<reloader_helm_config>"  # Path to override-values.yaml for Reloader Helm Chart
+  velero_helm_config                                         = "<velero_helm_config>"  # Path to override-values.yaml for Velero Helm Chart
+  velero_iampolicy_json_content                              = "<velero_iampolicy_json_content>"  # Custom IAM Policy for Velero IRSA
+
+  # optional inputs (showing first 5 with their defaults)
+  actions_runner_controller               = false  # Enable actions_runner_controller add-on
+  actions_runner_controller_extra_configs = {}  # Override attributes of helm_release terraform resource
+  aws_ebs_csi_driver                      = false  # Enable AWS EBS CSI Driver add-on
+  aws_ebs_csi_driver_extra_configs        = {}  # Override attributes of helm_release terraform resource
+  aws_efs_csi_driver                      = false  # Enable AWS EFS CSI Driver add-on
+}
+```
+
 ## Inputs and Outputs
 
 Refer to complete documentation: [here](docs/io.md)
@@ -189,3 +250,322 @@ At [CloudDrove][website], has extensive experience in designing, building & migr
   [twitter]: https://twitter.com/clouddrove/
   [email]: https://clouddrove.com/contact-us.html
   [terraform_modules]: https://github.com/clouddrove?utf8=%E2%9C%93&q=terraform-&type=&language=
+
+<!-- BEGIN_TF_DOCS -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.6.6 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.72 |
+| <a name="requirement_helm"></a> [helm](#requirement\_helm) | >= 2.6 |
+| <a name="requirement_kubectl"></a> [kubectl](#requirement\_kubectl) | >= 1.14.0 |
+| <a name="requirement_local"></a> [local](#requirement\_local) | >= 2.0.0 |
+| <a name="requirement_time"></a> [time](#requirement\_time) | >= 0.8 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.72 |
+| <a name="provider_local"></a> [local](#provider\_local) | >= 2.0.0 |
+
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_actions_runner_controller"></a> [actions\_runner\_controller](#module\_actions\_runner\_controller) | ./addons/actions-runner-controller | n/a |
+| <a name="module_aws_ebs_csi_driver"></a> [aws\_ebs\_csi\_driver](#module\_aws\_ebs\_csi\_driver) | ./addons/aws-ebs-csi-driver | n/a |
+| <a name="module_aws_efs_csi_driver"></a> [aws\_efs\_csi\_driver](#module\_aws\_efs\_csi\_driver) | ./addons/aws-efs-csi-driver | n/a |
+| <a name="module_aws_load_balancer_controller"></a> [aws\_load\_balancer\_controller](#module\_aws\_load\_balancer\_controller) | ./addons/aws-load-balancer-controller | n/a |
+| <a name="module_aws_node_termination_handler"></a> [aws\_node\_termination\_handler](#module\_aws\_node\_termination\_handler) | ./addons/aws-node-termination-handler | n/a |
+| <a name="module_aws_xray"></a> [aws\_xray](#module\_aws\_xray) | ./addons/aws-xray | n/a |
+| <a name="module_calico_tigera"></a> [calico\_tigera](#module\_calico\_tigera) | ./addons/calico-tigera | n/a |
+| <a name="module_certification_manager"></a> [certification\_manager](#module\_certification\_manager) | ./addons/cert-manager | n/a |
+| <a name="module_cluster_autoscaler"></a> [cluster\_autoscaler](#module\_cluster\_autoscaler) | ./addons/cluster-autoscaler | n/a |
+| <a name="module_external_dns"></a> [external\_dns](#module\_external\_dns) | ./addons/external-dns | n/a |
+| <a name="module_external_secrets"></a> [external\_secrets](#module\_external\_secrets) | ./addons/external-secrets | n/a |
+| <a name="module_filebeat"></a> [filebeat](#module\_filebeat) | ./addons/filebeat | n/a |
+| <a name="module_fluent_bit"></a> [fluent\_bit](#module\_fluent\_bit) | ./addons/fluent-bit | n/a |
+| <a name="module_grafana"></a> [grafana](#module\_grafana) | ./addons/grafana | n/a |
+| <a name="module_ingress_nginx"></a> [ingress\_nginx](#module\_ingress\_nginx) | ./addons/ingress-nginx | n/a |
+| <a name="module_istio_ingress"></a> [istio\_ingress](#module\_istio\_ingress) | ./addons/istio-ingress | n/a |
+| <a name="module_jaeger"></a> [jaeger](#module\_jaeger) | ./addons/jaeger | n/a |
+| <a name="module_k8s_pod_restart_info_collector"></a> [k8s\_pod\_restart\_info\_collector](#module\_k8s\_pod\_restart\_info\_collector) | ./addons/k8s-pod-restart-info-collector | n/a |
+| <a name="module_karpenter"></a> [karpenter](#module\_karpenter) | ./addons/karpenter | n/a |
+| <a name="module_keda"></a> [keda](#module\_keda) | ./addons/keda | n/a |
+| <a name="module_kiali_server"></a> [kiali\_server](#module\_kiali\_server) | ./addons/kiali-server | n/a |
+| <a name="module_kube_state_metrics"></a> [kube\_state\_metrics](#module\_kube\_state\_metrics) | ./addons/kube-state-metrics | n/a |
+| <a name="module_kubeclarity"></a> [kubeclarity](#module\_kubeclarity) | ./addons/kubeclarity | n/a |
+| <a name="module_loki"></a> [loki](#module\_loki) | ./addons/loki | n/a |
+| <a name="module_metrics_server"></a> [metrics\_server](#module\_metrics\_server) | ./addons/metrics-server | n/a |
+| <a name="module_new_relic"></a> [new\_relic](#module\_new\_relic) | ./addons/nri-bundle | n/a |
+| <a name="module_prometheus"></a> [prometheus](#module\_prometheus) | ./addons/prometheus | n/a |
+| <a name="module_prometheus_cloudwatch_exporter"></a> [prometheus\_cloudwatch\_exporter](#module\_prometheus\_cloudwatch\_exporter) | ./addons/prometheus-cloudwatch-exporter | n/a |
+| <a name="module_redis"></a> [redis](#module\_redis) | ./addons/redis | n/a |
+| <a name="module_reloader"></a> [reloader](#module\_reloader) | ./addons/reloader | n/a |
+| <a name="module_velero"></a> [velero](#module\_velero) | ./addons/velero | n/a |
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [local_file.actions_runner_controller_helm_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [local_file.aws_ebs_csi_driver_helm_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [local_file.aws_efs_csi_driver_helm_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [local_file.aws_load_balancer_controller_helm_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [local_file.aws_node_termination_handler_helm_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [local_file.aws_xray_helm_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [local_file.calico_tigera_helm_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [local_file.certification_manager_helm_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [local_file.cluster_autoscaler_helm_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [local_file.external_dns_helm_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [local_file.external_secrets_helm_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [local_file.filebeat_helm_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [local_file.fluent_bit_helm_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [local_file.grafana_helm_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [local_file.ingress_nginx_helm_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [local_file.istio_ingress_helm_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [local_file.jaeger_helm_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [local_file.k8s_pod_restart_info_collector_helm_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [local_file.karpenter_helm_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [local_file.keda_helm_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [local_file.kiali_server_helm_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [local_file.kube_state_metrics_helm_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [local_file.kubeclarity_helm_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [local_file.loki_helm_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [local_file.metrics_server_helm_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [local_file.new_relic_helm_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [local_file.prometheus_cloudwatch_exporter_helm_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [local_file.prometheus_helm_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [local_file.redis_helm_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [local_file.reloader_helm_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [local_file.velero_helm_config](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_actions_runner_controller"></a> [actions\_runner\_controller](#input\_actions\_runner\_controller) | Enable actions\_runner\_controller add-on | `bool` | `false` | no |
+| <a name="input_actions_runner_controller_extra_configs"></a> [actions\_runner\_controller\_extra\_configs](#input\_actions\_runner\_controller\_extra\_configs) | Override attributes of helm\_release terraform resource | `any` | `{}` | no |
+| <a name="input_actions_runner_controller_helm_config"></a> [actions\_runner\_controller\_helm\_config](#input\_actions\_runner\_controller\_helm\_config) | Path to override-values.yaml for actions\_runner\_controller Chart | `any` | `null` | no |
+| <a name="input_aws_ebs_csi_driver"></a> [aws\_ebs\_csi\_driver](#input\_aws\_ebs\_csi\_driver) | Enable AWS EBS CSI Driver add-on | `bool` | `false` | no |
+| <a name="input_aws_ebs_csi_driver_extra_configs"></a> [aws\_ebs\_csi\_driver\_extra\_configs](#input\_aws\_ebs\_csi\_driver\_extra\_configs) | Override attributes of helm\_release terraform resource | `any` | `{}` | no |
+| <a name="input_aws_ebs_csi_driver_helm_config"></a> [aws\_ebs\_csi\_driver\_helm\_config](#input\_aws\_ebs\_csi\_driver\_helm\_config) | Path to override-values.yaml for EBS CSI Driver Helm Chart | `any` | `null` | no |
+| <a name="input_aws_ebs_csi_driver_iampolicy_json_content"></a> [aws\_ebs\_csi\_driver\_iampolicy\_json\_content](#input\_aws\_ebs\_csi\_driver\_iampolicy\_json\_content) | Custom IAM Policy for EBS CSI Driver IRSA | `string` | `null` | no |
+| <a name="input_aws_efs_csi_driver"></a> [aws\_efs\_csi\_driver](#input\_aws\_efs\_csi\_driver) | Enable AWS EFS CSI Driver add-on | `bool` | `false` | no |
+| <a name="input_aws_efs_csi_driver_extra_configs"></a> [aws\_efs\_csi\_driver\_extra\_configs](#input\_aws\_efs\_csi\_driver\_extra\_configs) | Override attributes of helm\_release terraform resource | `any` | `{}` | no |
+| <a name="input_aws_efs_csi_driver_helm_config"></a> [aws\_efs\_csi\_driver\_helm\_config](#input\_aws\_efs\_csi\_driver\_helm\_config) | Path to override-values.yaml for AWS EFS CSI Driver Helm Chart | `any` | `null` | no |
+| <a name="input_aws_efs_csi_driver_iampolicy_json_content"></a> [aws\_efs\_csi\_driver\_iampolicy\_json\_content](#input\_aws\_efs\_csi\_driver\_iampolicy\_json\_content) | Custom IAM Policy for EFS CSI Driver IRSA | `string` | `null` | no |
+| <a name="input_aws_load_balancer_controller"></a> [aws\_load\_balancer\_controller](#input\_aws\_load\_balancer\_controller) | Enable AWS Load Balancer Controller add-on | `bool` | `false` | no |
+| <a name="input_aws_load_balancer_controller_extra_configs"></a> [aws\_load\_balancer\_controller\_extra\_configs](#input\_aws\_load\_balancer\_controller\_extra\_configs) | Override attributes of helm\_release terraform resource | `any` | `{}` | no |
+| <a name="input_aws_load_balancer_controller_helm_config"></a> [aws\_load\_balancer\_controller\_helm\_config](#input\_aws\_load\_balancer\_controller\_helm\_config) | Path to override-values.yaml for AWS Load Balancer Controller Helm Chart | `any` | `null` | no |
+| <a name="input_aws_load_balancer_controller_iampolicy_json_content"></a> [aws\_load\_balancer\_controller\_iampolicy\_json\_content](#input\_aws\_load\_balancer\_controller\_iampolicy\_json\_content) | Custom IAM Policy for Load Balancer Controller IRSA | `string` | `null` | no |
+| <a name="input_aws_node_termination_handler"></a> [aws\_node\_termination\_handler](#input\_aws\_node\_termination\_handler) | Enable AWS Node Termination Handler add-on | `bool` | `false` | no |
+| <a name="input_aws_node_termination_handler_extra_configs"></a> [aws\_node\_termination\_handler\_extra\_configs](#input\_aws\_node\_termination\_handler\_extra\_configs) | Override attributes of helm\_release terraform resource | `any` | `{}` | no |
+| <a name="input_aws_node_termination_handler_helm_config"></a> [aws\_node\_termination\_handler\_helm\_config](#input\_aws\_node\_termination\_handler\_helm\_config) | Path to override-values.yaml for AWS Node Termination Handler Helm Chart | `any` | `null` | no |
+| <a name="input_aws_xray"></a> [aws\_xray](#input\_aws\_xray) | Enable AWS XRAY add-on | `bool` | `false` | no |
+| <a name="input_aws_xray_extra_configs"></a> [aws\_xray\_extra\_configs](#input\_aws\_xray\_extra\_configs) | Override attributes of helm\_release terraform resource | `any` | `{}` | no |
+| <a name="input_aws_xray_helm_config"></a> [aws\_xray\_helm\_config](#input\_aws\_xray\_helm\_config) | Path to override-values.yaml for AWS X-Ray Helm Chart | `any` | `null` | no |
+| <a name="input_aws_xray_iampolicy_json_content"></a> [aws\_xray\_iampolicy\_json\_content](#input\_aws\_xray\_iampolicy\_json\_content) | Custom IAM Policy for AWS X-Ray IRSA | `string` | `null` | no |
+| <a name="input_calico_tigera"></a> [calico\_tigera](#input\_calico\_tigera) | Enable Tigera's Calico add-on | `bool` | `false` | no |
+| <a name="input_calico_tigera_extra_configs"></a> [calico\_tigera\_extra\_configs](#input\_calico\_tigera\_extra\_configs) | Override attributes of helm\_release terraform resource | `any` | `{}` | no |
+| <a name="input_calico_tigera_helm_config"></a> [calico\_tigera\_helm\_config](#input\_calico\_tigera\_helm\_config) | Path to override-values.yaml for Calico Helm Chart | `any` | `null` | no |
+| <a name="input_certification_manager"></a> [certification\_manager](#input\_certification\_manager) | Enable certification\_manager add-on | `bool` | `false` | no |
+| <a name="input_certification_manager_extra_configs"></a> [certification\_manager\_extra\_configs](#input\_certification\_manager\_extra\_configs) | Override attributes of helm\_release terraform resource | `any` | `{}` | no |
+| <a name="input_certification_manager_helm_config"></a> [certification\_manager\_helm\_config](#input\_certification\_manager\_helm\_config) | Path to override-values.yaml for Certification Manager Chart | `any` | `null` | no |
+| <a name="input_cluster_autoscaler"></a> [cluster\_autoscaler](#input\_cluster\_autoscaler) | Enable Cluster Autoscaler add-on | `bool` | `false` | no |
+| <a name="input_cluster_autoscaler_extra_configs"></a> [cluster\_autoscaler\_extra\_configs](#input\_cluster\_autoscaler\_extra\_configs) | Override attributes of helm\_release terraform resource | `any` | `{}` | no |
+| <a name="input_cluster_autoscaler_helm_config"></a> [cluster\_autoscaler\_helm\_config](#input\_cluster\_autoscaler\_helm\_config) | Path to override-values.yaml for Cluster Autoscaler Helm Chart | `any` | `null` | no |
+| <a name="input_cluster_autoscaler_iampolicy_json_content"></a> [cluster\_autoscaler\_iampolicy\_json\_content](#input\_cluster\_autoscaler\_iampolicy\_json\_content) | Custom IAM Policy for ClusterAutoscaler IRSA | `string` | `null` | no |
+| <a name="input_data_plane_wait_arn"></a> [data\_plane\_wait\_arn](#input\_data\_plane\_wait\_arn) | This waits for the data plane to be ready | `string` | `""` | no |
+| <a name="input_eks_cluster_name"></a> [eks\_cluster\_name](#input\_eks\_cluster\_name) | Name of eks cluster | `string` | `""` | no |
+| <a name="input_external_dns"></a> [external\_dns](#input\_external\_dns) | Enable External DNS add-on | `bool` | `false` | no |
+| <a name="input_external_dns_extra_configs"></a> [external\_dns\_extra\_configs](#input\_external\_dns\_extra\_configs) | Override attributes of helm\_release terraform resource | `any` | `{}` | no |
+| <a name="input_external_dns_helm_config"></a> [external\_dns\_helm\_config](#input\_external\_dns\_helm\_config) | Path to override-values.yaml for External DNS Helm Chart | `any` | `null` | no |
+| <a name="input_external_dns_iampolicy_json_content"></a> [external\_dns\_iampolicy\_json\_content](#input\_external\_dns\_iampolicy\_json\_content) | Custom IAM Policy for External DNS | `string` | `null` | no |
+| <a name="input_external_secrets"></a> [external\_secrets](#input\_external\_secrets) | Enable External-Secrets add-on | `bool` | `false` | no |
+| <a name="input_external_secrets_extra_configs"></a> [external\_secrets\_extra\_configs](#input\_external\_secrets\_extra\_configs) | Override attributes of helm\_release terraform resource | `any` | `{}` | no |
+| <a name="input_external_secrets_helm_config"></a> [external\_secrets\_helm\_config](#input\_external\_secrets\_helm\_config) | Path to override-values.yaml for External-Secrets Helm Chart | `any` | `null` | no |
+| <a name="input_external_secrets_iampolicy_json_content"></a> [external\_secrets\_iampolicy\_json\_content](#input\_external\_secrets\_iampolicy\_json\_content) | Custom IAM Policy for External-Secrets IRSA | `string` | `null` | no |
+| <a name="input_filebeat"></a> [filebeat](#input\_filebeat) | Enable Filebeat add-on | `bool` | `false` | no |
+| <a name="input_filebeat_extra_configs"></a> [filebeat\_extra\_configs](#input\_filebeat\_extra\_configs) | Override attributes of helm\_release terraform resource | `any` | `{}` | no |
+| <a name="input_filebeat_helm_config"></a> [filebeat\_helm\_config](#input\_filebeat\_helm\_config) | Filebeat Helm Chart config | `any` | `null` | no |
+| <a name="input_fluent_bit"></a> [fluent\_bit](#input\_fluent\_bit) | Enable FluentBit add-on | `bool` | `false` | no |
+| <a name="input_fluent_bit_extra_configs"></a> [fluent\_bit\_extra\_configs](#input\_fluent\_bit\_extra\_configs) | Override attributes of helm\_release terraform resource | `any` | `{}` | no |
+| <a name="input_fluent_bit_helm_config"></a> [fluent\_bit\_helm\_config](#input\_fluent\_bit\_helm\_config) | Path to override-values.yaml for FluentBit Helm Chart | `any` | `null` | no |
+| <a name="input_fluent_bit_iampolicy_json_content"></a> [fluent\_bit\_iampolicy\_json\_content](#input\_fluent\_bit\_iampolicy\_json\_content) | Custom IAM Policy for FluentBit IRSA | `string` | `null` | no |
+| <a name="input_grafana"></a> [grafana](#input\_grafana) | Enable Grafana add-on | `bool` | `false` | no |
+| <a name="input_grafana_extra_configs"></a> [grafana\_extra\_configs](#input\_grafana\_extra\_configs) | Override attributes of helm\_release terraform resource | `any` | `{}` | no |
+| <a name="input_grafana_helm_config"></a> [grafana\_helm\_config](#input\_grafana\_helm\_config) | Grafana Helm Chart config | `any` | `null` | no |
+| <a name="input_grafana_manifests"></a> [grafana\_manifests](#input\_grafana\_manifests) | Path of virtual-service yaml manifests | <pre>object({<br/>    grafana_virtualservice_file_path = string<br/>  })</pre> | <pre>{<br/>  "grafana_virtualservice_file_path": ""<br/>}</pre> | no |
+| <a name="input_ingress_nginx"></a> [ingress\_nginx](#input\_ingress\_nginx) | Enable ingress nginx add-on | `bool` | `false` | no |
+| <a name="input_ingress_nginx_extra_configs"></a> [ingress\_nginx\_extra\_configs](#input\_ingress\_nginx\_extra\_configs) | Override attributes of helm\_release terraform resource | `any` | `null` | no |
+| <a name="input_ingress_nginx_helm_config"></a> [ingress\_nginx\_helm\_config](#input\_ingress\_nginx\_helm\_config) | Path to override-values.yaml for Ingress Nginx Helm Chart | `any` | `null` | no |
+| <a name="input_irsa_iam_permissions_boundary"></a> [irsa\_iam\_permissions\_boundary](#input\_irsa\_iam\_permissions\_boundary) | IRSA Input configuration for the addon\_context | `any` | `{}` | no |
+| <a name="input_irsa_iam_role_path"></a> [irsa\_iam\_role\_path](#input\_irsa\_iam\_role\_path) | IRSA Input configuration for the addon\_context | `any` | `{}` | no |
+| <a name="input_istio_ingress"></a> [istio\_ingress](#input\_istio\_ingress) | Enable Istio Ingress add-on | `bool` | `false` | no |
+| <a name="input_istio_ingress_extra_configs"></a> [istio\_ingress\_extra\_configs](#input\_istio\_ingress\_extra\_configs) | Override attributes of helm\_release terraform resource | `any` | `{}` | no |
+| <a name="input_istio_ingress_helm_config"></a> [istio\_ingress\_helm\_config](#input\_istio\_ingress\_helm\_config) | Path to override-values.yaml for Istio Ingress  Helm Chart | `any` | `null` | no |
+| <a name="input_istio_manifests"></a> [istio\_manifests](#input\_istio\_manifests) | Path of Ingress and Gateway yaml manifests | <pre>object({<br/>    istio_ingress_manifest_file_path = list(any)<br/>    istio_gateway_manifest_file_path = list(any)<br/>  })</pre> | <pre>{<br/>  "istio_gateway_manifest_file_path": [<br/>    ""<br/>  ],<br/>  "istio_ingress_manifest_file_path": [<br/>    ""<br/>  ]<br/>}</pre> | no |
+| <a name="input_jaeger"></a> [jaeger](#input\_jaeger) | Enable jaeger add-on | `bool` | `false` | no |
+| <a name="input_jaeger_extra_configs"></a> [jaeger\_extra\_configs](#input\_jaeger\_extra\_configs) | Override attributes of helm\_release terraform resource | `any` | `{}` | no |
+| <a name="input_jaeger_helm_config"></a> [jaeger\_helm\_config](#input\_jaeger\_helm\_config) | Path to override-values.yaml for Jaeger Chart | `any` | `null` | no |
+| <a name="input_k8s_pod_restart_info_collector"></a> [k8s\_pod\_restart\_info\_collector](#input\_k8s\_pod\_restart\_info\_collector) | Enable the k8s-pod-restart-info-collector add-on | `bool` | `false` | no |
+| <a name="input_k8s_pod_restart_info_collector_extra_configs"></a> [k8s\_pod\_restart\_info\_collector\_extra\_configs](#input\_k8s\_pod\_restart\_info\_collector\_extra\_configs) | Additional configuration overrides for the k8s-pod-restart-info-collector Helm release | `any` | `{}` | no |
+| <a name="input_k8s_pod_restart_info_collector_helm_config"></a> [k8s\_pod\_restart\_info\_collector\_helm\_config](#input\_k8s\_pod\_restart\_info\_collector\_helm\_config) | Path to override-values.yaml for the k8s-pod-restart-info-collector Helm Chart | `any` | `null` | no |
+| <a name="input_karpenter"></a> [karpenter](#input\_karpenter) | Enable KARPENTER add-on | `bool` | `false` | no |
+| <a name="input_karpenter_extra_configs"></a> [karpenter\_extra\_configs](#input\_karpenter\_extra\_configs) | Override attributes of helm\_release terraform resource | `any` | `{}` | no |
+| <a name="input_karpenter_helm_config"></a> [karpenter\_helm\_config](#input\_karpenter\_helm\_config) | Path to override-values.yaml for Karpenter Helm Chart | `any` | `null` | no |
+| <a name="input_karpenter_iampolicy_json_content"></a> [karpenter\_iampolicy\_json\_content](#input\_karpenter\_iampolicy\_json\_content) | Custom IAM Policy for Karpenter IRSA | `string` | `null` | no |
+| <a name="input_keda"></a> [keda](#input\_keda) | Enable Keda add-on | `bool` | `false` | no |
+| <a name="input_keda_extra_configs"></a> [keda\_extra\_configs](#input\_keda\_extra\_configs) | Override attributes of helm\_release terraform resource | `any` | `{}` | no |
+| <a name="input_keda_helm_config"></a> [keda\_helm\_config](#input\_keda\_helm\_config) | Path to override-values.yaml for Keda Helm Chart | `any` | `null` | no |
+| <a name="input_kiali_manifests"></a> [kiali\_manifests](#input\_kiali\_manifests) | Path of virtual-service yaml manifests | <pre>object({<br/>    kiali_virtualservice_file_path = string<br/>  })</pre> | <pre>{<br/>  "kiali_virtualservice_file_path": ""<br/>}</pre> | no |
+| <a name="input_kiali_server"></a> [kiali\_server](#input\_kiali\_server) | Enable kiali server add-on | `bool` | `false` | no |
+| <a name="input_kiali_server_extra_configs"></a> [kiali\_server\_extra\_configs](#input\_kiali\_server\_extra\_configs) | Override attributes of helm\_release terraform resource | `any` | `{}` | no |
+| <a name="input_kiali_server_helm_config"></a> [kiali\_server\_helm\_config](#input\_kiali\_server\_helm\_config) | Path to override-values.yaml for Kiali Server Helm Chart | `any` | `null` | no |
+| <a name="input_kube_state_metrics"></a> [kube\_state\_metrics](#input\_kube\_state\_metrics) | Enable Kube-State-Metrics add-on | `bool` | `false` | no |
+| <a name="input_kube_state_metrics_extra_configs"></a> [kube\_state\_metrics\_extra\_configs](#input\_kube\_state\_metrics\_extra\_configs) | Override attributes of helm\_release terraform resource | `any` | `{}` | no |
+| <a name="input_kube_state_metrics_helm_config"></a> [kube\_state\_metrics\_helm\_config](#input\_kube\_state\_metrics\_helm\_config) | Kube-State-Metrics Helm Chart config | `any` | `null` | no |
+| <a name="input_kubeclarity"></a> [kubeclarity](#input\_kubeclarity) | Enable Kubeclarity add-on | `bool` | `false` | no |
+| <a name="input_kubeclarity_extra_configs"></a> [kubeclarity\_extra\_configs](#input\_kubeclarity\_extra\_configs) | Override attributes of helm\_release terraform resource | `any` | `{}` | no |
+| <a name="input_kubeclarity_helm_config"></a> [kubeclarity\_helm\_config](#input\_kubeclarity\_helm\_config) | Path to override-values.yaml for Kubeclarity Helm Chart | `any` | `null` | no |
+| <a name="input_loki"></a> [loki](#input\_loki) | Enable loki add-on | `bool` | `false` | no |
+| <a name="input_loki_extra_configs"></a> [loki\_extra\_configs](#input\_loki\_extra\_configs) | Override attributes of helm\_release terraform resource | `any` | `{}` | no |
+| <a name="input_loki_helm_config"></a> [loki\_helm\_config](#input\_loki\_helm\_config) | Path to override-values.yaml for Loki Chart | `any` | `null` | no |
+| <a name="input_manage_via_gitops"></a> [manage\_via\_gitops](#input\_manage\_via\_gitops) | Set this to `true` if managing addons via GitOps. Seting `true` will not create helm-release for addon. | `bool` | `false` | no |
+| <a name="input_metrics_server"></a> [metrics\_server](#input\_metrics\_server) | Enable metrics server add-on | `bool` | `false` | no |
+| <a name="input_metrics_server_extra_configs"></a> [metrics\_server\_extra\_configs](#input\_metrics\_server\_extra\_configs) | Override attributes of helm\_release terraform resource | `any` | `{}` | no |
+| <a name="input_metrics_server_helm_config"></a> [metrics\_server\_helm\_config](#input\_metrics\_server\_helm\_config) | Path to override-values.yaml for Metrics Server Helm Chart | `any` | `null` | no |
+| <a name="input_new_relic"></a> [new\_relic](#input\_new\_relic) | Enable New-Relic-Agent add-on | `bool` | `false` | no |
+| <a name="input_new_relic_extra_configs"></a> [new\_relic\_extra\_configs](#input\_new\_relic\_extra\_configs) | Override attributes of helm\_release terraform resource | `any` | `{}` | no |
+| <a name="input_new_relic_helm_config"></a> [new\_relic\_helm\_config](#input\_new\_relic\_helm\_config) | New-Relic Helm Chart config | `any` | `null` | no |
+| <a name="input_prometheus"></a> [prometheus](#input\_prometheus) | Enable prometheus add-on | `bool` | `false` | no |
+| <a name="input_prometheus_cloudwatch_exporter"></a> [prometheus\_cloudwatch\_exporter](#input\_prometheus\_cloudwatch\_exporter) | Enable Prometheus Cloudwatch Exporter add-on | `bool` | `false` | no |
+| <a name="input_prometheus_cloudwatch_exporter_extra_configs"></a> [prometheus\_cloudwatch\_exporter\_extra\_configs](#input\_prometheus\_cloudwatch\_exporter\_extra\_configs) | Override attributes of helm\_release terraform resource | `any` | `{}` | no |
+| <a name="input_prometheus_cloudwatch_exporter_helm_config"></a> [prometheus\_cloudwatch\_exporter\_helm\_config](#input\_prometheus\_cloudwatch\_exporter\_helm\_config) | Path to override-values.yaml for Promtheus Cloudwatch Exporter Chart | `any` | `null` | no |
+| <a name="input_prometheus_cloudwatch_exporter_role_iampolicy_json_content"></a> [prometheus\_cloudwatch\_exporter\_role\_iampolicy\_json\_content](#input\_prometheus\_cloudwatch\_exporter\_role\_iampolicy\_json\_content) | Custom IAM Policy for Prometheus Cloudwatch Exporter's Role | `string` | `null` | no |
+| <a name="input_prometheus_cloudwatch_exporter_secret_manifest"></a> [prometheus\_cloudwatch\_exporter\_secret\_manifest](#input\_prometheus\_cloudwatch\_exporter\_secret\_manifest) | Path of prometheus cloudwatch exporter manifest | `string` | `null` | no |
+| <a name="input_prometheus_extra_configs"></a> [prometheus\_extra\_configs](#input\_prometheus\_extra\_configs) | Override attributes of helm\_release terraform resource | `any` | `{}` | no |
+| <a name="input_prometheus_helm_config"></a> [prometheus\_helm\_config](#input\_prometheus\_helm\_config) | Prometheus Helm Chart config | `any` | `null` | no |
+| <a name="input_redis"></a> [redis](#input\_redis) | Enable Redis add-on | `bool` | `false` | no |
+| <a name="input_redis_extra_configs"></a> [redis\_extra\_configs](#input\_redis\_extra\_configs) | Override attributes of helm\_release terraform resource | `any` | `{}` | no |
+| <a name="input_redis_helm_config"></a> [redis\_helm\_config](#input\_redis\_helm\_config) | Path to override-values.yaml for Redis Helm Chart | `any` | `null` | no |
+| <a name="input_reloader"></a> [reloader](#input\_reloader) | Enable Reloader add-on | `bool` | `false` | no |
+| <a name="input_reloader_extra_configs"></a> [reloader\_extra\_configs](#input\_reloader\_extra\_configs) | Override attributes of helm\_release terraform resource | `any` | `{}` | no |
+| <a name="input_reloader_helm_config"></a> [reloader\_helm\_config](#input\_reloader\_helm\_config) | Path to override-values.yaml for Reloader Helm Chart | `any` | `null` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | IRSA Input configuration for the addon\_context | `any` | `{}` | no |
+| <a name="input_velero"></a> [velero](#input\_velero) | Enable Velero add-on | `bool` | `false` | no |
+| <a name="input_velero_extra_configs"></a> [velero\_extra\_configs](#input\_velero\_extra\_configs) | Override attributes of helm\_release terraform resource | `any` | `{}` | no |
+| <a name="input_velero_helm_config"></a> [velero\_helm\_config](#input\_velero\_helm\_config) | Path to override-values.yaml for Velero Helm Chart | `any` | `null` | no |
+| <a name="input_velero_iampolicy_json_content"></a> [velero\_iampolicy\_json\_content](#input\_velero\_iampolicy\_json\_content) | Custom IAM Policy for Velero IRSA | `string` | `null` | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| <a name="output_actions_runner_controller_chart_version"></a> [actions\_runner\_controller\_chart\_version](#output\_actions\_runner\_controller\_chart\_version) | Chart version of the actions\_runner\_controller Helm Chart. |
+| <a name="output_actions_runner_controller_namespace"></a> [actions\_runner\_controller\_namespace](#output\_actions\_runner\_controller\_namespace) | The namespace where actions\_runner\_controller is deployed. |
+| <a name="output_actions_runner_controller_repository"></a> [actions\_runner\_controller\_repository](#output\_actions\_runner\_controller\_repository) | Helm chart repository of the actions\_runner\_controller. |
+| <a name="output_aws_ebs_csi_driver_chart_version"></a> [aws\_ebs\_csi\_driver\_chart\_version](#output\_aws\_ebs\_csi\_driver\_chart\_version) | chart version used for aws-ebs-csi-driver helmchart |
+| <a name="output_aws_ebs_csi_driver_iam_policy"></a> [aws\_ebs\_csi\_driver\_iam\_policy](#output\_aws\_ebs\_csi\_driver\_iam\_policy) | IAM Policy name used in aws-ebs-csi-driver irsa |
+| <a name="output_aws_ebs_csi_driver_namespace"></a> [aws\_ebs\_csi\_driver\_namespace](#output\_aws\_ebs\_csi\_driver\_namespace) | Namespace where aws-ebs-csi-driver is installed |
+| <a name="output_aws_ebs_csi_driver_repository"></a> [aws\_ebs\_csi\_driver\_repository](#output\_aws\_ebs\_csi\_driver\_repository) | helm repository url of aws-ebs-csi-driver |
+| <a name="output_aws_ebs_csi_driver_service_account"></a> [aws\_ebs\_csi\_driver\_service\_account](#output\_aws\_ebs\_csi\_driver\_service\_account) | name of aws-ebs-csi-driver service-account |
+| <a name="output_aws_efs_csi_driver_chart_version"></a> [aws\_efs\_csi\_driver\_chart\_version](#output\_aws\_efs\_csi\_driver\_chart\_version) | chart version used for aws-efs-csi-driver helmchart |
+| <a name="output_aws_efs_csi_driver_iam_policy"></a> [aws\_efs\_csi\_driver\_iam\_policy](#output\_aws\_efs\_csi\_driver\_iam\_policy) | IAM Policy name used in aws-efs-csi-driver irsa |
+| <a name="output_aws_efs_csi_driver_namespace"></a> [aws\_efs\_csi\_driver\_namespace](#output\_aws\_efs\_csi\_driver\_namespace) | Namespace where aws-efs-csi-driver is installed |
+| <a name="output_aws_efs_csi_driver_repository"></a> [aws\_efs\_csi\_driver\_repository](#output\_aws\_efs\_csi\_driver\_repository) | helm repository url of aws-efs-csi-driver |
+| <a name="output_aws_efs_csi_driver_service_account"></a> [aws\_efs\_csi\_driver\_service\_account](#output\_aws\_efs\_csi\_driver\_service\_account) | name of aws-efs-csi-driver service-account |
+| <a name="output_aws_load_balancer_controller_chart_version"></a> [aws\_load\_balancer\_controller\_chart\_version](#output\_aws\_load\_balancer\_controller\_chart\_version) | chart version used for aws-load-balancer-controller helmchart |
+| <a name="output_aws_load_balancer_controller_iam_policy"></a> [aws\_load\_balancer\_controller\_iam\_policy](#output\_aws\_load\_balancer\_controller\_iam\_policy) | IAM Policy name used in aws-load-balancer-controller irsa |
+| <a name="output_aws_load_balancer_controller_namespace"></a> [aws\_load\_balancer\_controller\_namespace](#output\_aws\_load\_balancer\_controller\_namespace) | Namespace where aws-load-balancer-controller is installed |
+| <a name="output_aws_load_balancer_controller_repository"></a> [aws\_load\_balancer\_controller\_repository](#output\_aws\_load\_balancer\_controller\_repository) | helm repository url of aws-load-balancer-controller |
+| <a name="output_aws_load_balancer_controller_service_account"></a> [aws\_load\_balancer\_controller\_service\_account](#output\_aws\_load\_balancer\_controller\_service\_account) | name of aws-load-balancer-controller service-account |
+| <a name="output_calico_tigera_chart_version"></a> [calico\_tigera\_chart\_version](#output\_calico\_tigera\_chart\_version) | chart version used for calico-tigera helmchart |
+| <a name="output_calico_tigera_namespace"></a> [calico\_tigera\_namespace](#output\_calico\_tigera\_namespace) | Namespace where calico-tigera is installed |
+| <a name="output_calico_tigera_repository"></a> [calico\_tigera\_repository](#output\_calico\_tigera\_repository) | helm repository url of calico-tigera |
+| <a name="output_certification_manager_chart_version"></a> [certification\_manager\_chart\_version](#output\_certification\_manager\_chart\_version) | Chart version of the certification-manager Helm Chart. |
+| <a name="output_certification_manager_namespace"></a> [certification\_manager\_namespace](#output\_certification\_manager\_namespace) | The namespace where certification-manager is deployed. |
+| <a name="output_certification_manager_repository"></a> [certification\_manager\_repository](#output\_certification\_manager\_repository) | Helm chart repository of the certification-manager. |
+| <a name="output_cluster_autoscaler_chart_version"></a> [cluster\_autoscaler\_chart\_version](#output\_cluster\_autoscaler\_chart\_version) | chart version used for cluster-autoscaler helmchart |
+| <a name="output_cluster_autoscaler_iam_policy"></a> [cluster\_autoscaler\_iam\_policy](#output\_cluster\_autoscaler\_iam\_policy) | IAM Policy name used in cluster-autoscaler irsa |
+| <a name="output_cluster_autoscaler_namespace"></a> [cluster\_autoscaler\_namespace](#output\_cluster\_autoscaler\_namespace) | Namespace where cluster-autoscaler is installed |
+| <a name="output_cluster_autoscaler_repository"></a> [cluster\_autoscaler\_repository](#output\_cluster\_autoscaler\_repository) | helm repository url of cluster-autoscaler |
+| <a name="output_cluster_autoscaler_service_account"></a> [cluster\_autoscaler\_service\_account](#output\_cluster\_autoscaler\_service\_account) | name of cluster-autoscaler service-account |
+| <a name="output_external_dns_chart_version"></a> [external\_dns\_chart\_version](#output\_external\_dns\_chart\_version) | Chart version of the external dns Helm Chart. |
+| <a name="output_external_dns_namespace"></a> [external\_dns\_namespace](#output\_external\_dns\_namespace) | The namespace where external dns is deployed. |
+| <a name="output_external_dns_repository"></a> [external\_dns\_repository](#output\_external\_dns\_repository) | Helm chart repository of the external dns. |
+| <a name="output_external_secrets_chart_version"></a> [external\_secrets\_chart\_version](#output\_external\_secrets\_chart\_version) | chart version used for external-secrets helmchart |
+| <a name="output_external_secrets_iam_policy"></a> [external\_secrets\_iam\_policy](#output\_external\_secrets\_iam\_policy) | Name of IAM Policy used in external-secrets irsa |
+| <a name="output_external_secrets_namespace"></a> [external\_secrets\_namespace](#output\_external\_secrets\_namespace) | Namespace where external-secrets is installed |
+| <a name="output_external_secrets_repository"></a> [external\_secrets\_repository](#output\_external\_secrets\_repository) | helm repository url of external-secrets |
+| <a name="output_external_secrets_service_account"></a> [external\_secrets\_service\_account](#output\_external\_secrets\_service\_account) | name of external-secrets service-account |
+| <a name="output_filebeat_chart_version"></a> [filebeat\_chart\_version](#output\_filebeat\_chart\_version) | chart version used for Filebeat helmchart |
+| <a name="output_filebeat_namespace"></a> [filebeat\_namespace](#output\_filebeat\_namespace) | Namespace where Filebeat is installed |
+| <a name="output_filebeat_repository"></a> [filebeat\_repository](#output\_filebeat\_repository) | helm repository url of Filebeat |
+| <a name="output_fluent_bit_chart_version"></a> [fluent\_bit\_chart\_version](#output\_fluent\_bit\_chart\_version) | chart version used for fluent-bit helmchart |
+| <a name="output_fluent_bit_iam_policy"></a> [fluent\_bit\_iam\_policy](#output\_fluent\_bit\_iam\_policy) | IAM Policy name used in fluent-bit irsa |
+| <a name="output_fluent_bit_namespace"></a> [fluent\_bit\_namespace](#output\_fluent\_bit\_namespace) | Namespace where fluent-bit is installed |
+| <a name="output_fluent_bit_repository"></a> [fluent\_bit\_repository](#output\_fluent\_bit\_repository) | helm repository url of fluent-bit |
+| <a name="output_fluent_bit_service_account"></a> [fluent\_bit\_service\_account](#output\_fluent\_bit\_service\_account) | name of fluent-bit service-account |
+| <a name="output_grafana_chart_version"></a> [grafana\_chart\_version](#output\_grafana\_chart\_version) | Chart version of the grafana Helm Chart. |
+| <a name="output_grafana_namespace"></a> [grafana\_namespace](#output\_grafana\_namespace) | The namespace where grafana is deployed. |
+| <a name="output_grafana_repository"></a> [grafana\_repository](#output\_grafana\_repository) | Helm chart repository of the grafana. |
+| <a name="output_ingress_nginx_chart_version"></a> [ingress\_nginx\_chart\_version](#output\_ingress\_nginx\_chart\_version) | chart version used for ingress-nginx helmchart |
+| <a name="output_ingress_nginx_namespace"></a> [ingress\_nginx\_namespace](#output\_ingress\_nginx\_namespace) | Namespace where ingress-nginx is installed |
+| <a name="output_ingress_nginx_repository"></a> [ingress\_nginx\_repository](#output\_ingress\_nginx\_repository) | helm repository url of ingress-nginx |
+| <a name="output_istio_ingress_chart_version"></a> [istio\_ingress\_chart\_version](#output\_istio\_ingress\_chart\_version) | chart version used for istio-ingress helmchart |
+| <a name="output_istio_ingress_namespace"></a> [istio\_ingress\_namespace](#output\_istio\_ingress\_namespace) | Namespace where istio-ingress is installed |
+| <a name="output_istio_ingress_repository"></a> [istio\_ingress\_repository](#output\_istio\_ingress\_repository) | helm repository url of istio-ingress |
+| <a name="output_jaeger_chart_version"></a> [jaeger\_chart\_version](#output\_jaeger\_chart\_version) | Chart version of the jaeger Helm Chart. |
+| <a name="output_jaeger_namespace"></a> [jaeger\_namespace](#output\_jaeger\_namespace) | The namespace where jaeger is deployed. |
+| <a name="output_jaeger_repository"></a> [jaeger\_repository](#output\_jaeger\_repository) | Helm chart repository of the jaeger. |
+| <a name="output_k8s_pod_restart_info_collector_chart_version"></a> [k8s\_pod\_restart\_info\_collector\_chart\_version](#output\_k8s\_pod\_restart\_info\_collector\_chart\_version) | Chart version of the k8s-pod-restart-info-collector Helm Chart. |
+| <a name="output_k8s_pod_restart_info_collector_namespace"></a> [k8s\_pod\_restart\_info\_collector\_namespace](#output\_k8s\_pod\_restart\_info\_collector\_namespace) | The namespace where the k8s-pod-restart-info-collector is deployed. |
+| <a name="output_k8s_pod_restart_info_collector_repository"></a> [k8s\_pod\_restart\_info\_collector\_repository](#output\_k8s\_pod\_restart\_info\_collector\_repository) | Helm chart repository of the k8s-pod-restart-info-collector. |
+| <a name="output_karpenter_chart_version"></a> [karpenter\_chart\_version](#output\_karpenter\_chart\_version) | chart version used for karpenter helmchart |
+| <a name="output_karpenter_iam_policy"></a> [karpenter\_iam\_policy](#output\_karpenter\_iam\_policy) | IAM Policy name used in karpenter irsa |
+| <a name="output_karpenter_namespace"></a> [karpenter\_namespace](#output\_karpenter\_namespace) | Namespace where karpenter is installed |
+| <a name="output_karpenter_repository"></a> [karpenter\_repository](#output\_karpenter\_repository) | helm repository url of karpenter |
+| <a name="output_karpenter_service_account"></a> [karpenter\_service\_account](#output\_karpenter\_service\_account) | name of karpenter service-account |
+| <a name="output_keda_chart_version"></a> [keda\_chart\_version](#output\_keda\_chart\_version) | Chart version of the Keda Helm Chart. |
+| <a name="output_keda_namespace"></a> [keda\_namespace](#output\_keda\_namespace) | The namespace where Keda is deployed. |
+| <a name="output_keda_repository"></a> [keda\_repository](#output\_keda\_repository) | Helm chart repository of the Keda. |
+| <a name="output_kiali_server_chart_version"></a> [kiali\_server\_chart\_version](#output\_kiali\_server\_chart\_version) | chart version used for kiali-server helmchart |
+| <a name="output_kiali_server_namespace"></a> [kiali\_server\_namespace](#output\_kiali\_server\_namespace) | Namespace where kiali-server is installed |
+| <a name="output_kiali_server_repository"></a> [kiali\_server\_repository](#output\_kiali\_server\_repository) | helm repository url of kiali-server |
+| <a name="output_kube_state_metrics_chart_version"></a> [kube\_state\_metrics\_chart\_version](#output\_kube\_state\_metrics\_chart\_version) | Chart version of the Kube-State-Metrics Helm Chart. |
+| <a name="output_kube_state_metrics_namespace"></a> [kube\_state\_metrics\_namespace](#output\_kube\_state\_metrics\_namespace) | The namespace where Kube-State-Metrics is deployed. |
+| <a name="output_kube_state_metrics_repository"></a> [kube\_state\_metrics\_repository](#output\_kube\_state\_metrics\_repository) | Helm chart repository of the Kube-State-Metrics. |
+| <a name="output_kubeclarity_chart_version"></a> [kubeclarity\_chart\_version](#output\_kubeclarity\_chart\_version) | chart version used for kubeclarity helmchart |
+| <a name="output_kubeclarity_namespace"></a> [kubeclarity\_namespace](#output\_kubeclarity\_namespace) | Namespace where kubeclarity is installed |
+| <a name="output_kubeclarity_repository"></a> [kubeclarity\_repository](#output\_kubeclarity\_repository) | helm repository url of kubeclarity |
+| <a name="output_loki_chart_version"></a> [loki\_chart\_version](#output\_loki\_chart\_version) | Chart version of the loki Helm Chart. |
+| <a name="output_loki_namespace"></a> [loki\_namespace](#output\_loki\_namespace) | The namespace where loki is deployed. |
+| <a name="output_loki_repository"></a> [loki\_repository](#output\_loki\_repository) | Helm chart repository of the loki. |
+| <a name="output_metrics_server_chart_version"></a> [metrics\_server\_chart\_version](#output\_metrics\_server\_chart\_version) | chart version used for metrics-server helmchart |
+| <a name="output_metrics_server_namespace"></a> [metrics\_server\_namespace](#output\_metrics\_server\_namespace) | Namespace where metrics-server is installed |
+| <a name="output_metrics_server_repository"></a> [metrics\_server\_repository](#output\_metrics\_server\_repository) | helm repository url of metrics-server |
+| <a name="output_new_relic_chart_version"></a> [new\_relic\_chart\_version](#output\_new\_relic\_chart\_version) | chart version used for new-relic helmchart |
+| <a name="output_new_relic_namespace"></a> [new\_relic\_namespace](#output\_new\_relic\_namespace) | Namespace where new-relic is installed |
+| <a name="output_new_relic_repository"></a> [new\_relic\_repository](#output\_new\_relic\_repository) | helm repository url of new-relic |
+| <a name="output_prometheus_chart_version"></a> [prometheus\_chart\_version](#output\_prometheus\_chart\_version) | Chart version of the prometheus Helm Chart. |
+| <a name="output_prometheus_cloudwatch_exporter_chart_version"></a> [prometheus\_cloudwatch\_exporter\_chart\_version](#output\_prometheus\_cloudwatch\_exporter\_chart\_version) | Chart version of the Prometheus Cloudwatch Exporter Helm Chart. |
+| <a name="output_prometheus_cloudwatch_exporter_namespace"></a> [prometheus\_cloudwatch\_exporter\_namespace](#output\_prometheus\_cloudwatch\_exporter\_namespace) | The namespace where Prometheus Cloudwatch Exporter is deployed. |
+| <a name="output_prometheus_cloudwatch_exporter_repository"></a> [prometheus\_cloudwatch\_exporter\_repository](#output\_prometheus\_cloudwatch\_exporter\_repository) | Helm chart repository of the Prometheus Cloudwatch Exporter. |
+| <a name="output_prometheus_namespace"></a> [prometheus\_namespace](#output\_prometheus\_namespace) | The namespace where prometheus is deployed. |
+| <a name="output_prometheus_repository"></a> [prometheus\_repository](#output\_prometheus\_repository) | Helm chart repository of the prometheus. |
+| <a name="output_redis_chart_version"></a> [redis\_chart\_version](#output\_redis\_chart\_version) | Chart version of the Redis Helm Chart. |
+| <a name="output_redis_namespace"></a> [redis\_namespace](#output\_redis\_namespace) | The namespace where Redis is deployed. |
+| <a name="output_redis_repository"></a> [redis\_repository](#output\_redis\_repository) | Helm chart repository of the Redis. |
+| <a name="output_reloader_chart_version"></a> [reloader\_chart\_version](#output\_reloader\_chart\_version) | Chart version of the reloader Helm Chart. |
+| <a name="output_reloader_namespace"></a> [reloader\_namespace](#output\_reloader\_namespace) | The namespace where reloader is deployed. |
+| <a name="output_reloader_repository"></a> [reloader\_repository](#output\_reloader\_repository) | Helm chart repository of the reloader. |
+| <a name="output_velero_chart_version"></a> [velero\_chart\_version](#output\_velero\_chart\_version) | chart version used for velero helmchart |
+| <a name="output_velero_iam_policy"></a> [velero\_iam\_policy](#output\_velero\_iam\_policy) | IAM Policy name used in velero irsa |
+| <a name="output_velero_namespace"></a> [velero\_namespace](#output\_velero\_namespace) | Namespace where velero is installed |
+| <a name="output_velero_repository"></a> [velero\_repository](#output\_velero\_repository) | helm repository url of velero |
+| <a name="output_velero_service_account"></a> [velero\_service\_account](#output\_velero\_service\_account) | name of velero service-account |
+<!-- END_TF_DOCS -->
